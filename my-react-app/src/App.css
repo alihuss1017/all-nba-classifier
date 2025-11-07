@@ -1,0 +1,53 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    box-shadow: 5px 5px 10px white;
+
+}
+
+header > img {
+    height: 100px;
+    width: 100px;
+    margin-right: 40px;
+}
+
+body {
+    background-color: rgb(24, 24, 24);
+    color: white;
+} 
+
+.playerCard  {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    align-items: center;
+    text-align: center;
+}
+
+.playerCard div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 1000px;
+}
+
+.playerName {
+    margin-right: 40px;
+    font-size: 40px;
+}
+
+.playerStat, th, td { 
+    border-collapse: collapse;
+    border: 5px solid black;
+    font-size: 30px;
+    padding: 10px 40px;
+}
