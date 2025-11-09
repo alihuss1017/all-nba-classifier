@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+from nba_api.stats.static import players
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd 
 import numpy as np 
+import pickle
 from sklearn.linear_model import LogisticRegression
 from preprocessing import Preprocessing
+from testing import predictions
 
 app = FastAPI()
 
@@ -20,26 +23,13 @@ app.add_middleware(
 )
 
 
-def get_top_players():
-    model = LogisticRegression()
-
-    X_train, y_train, X_test = Preprocessing(list(range(20,27)))()
-
-    model.fit(X_train[:, 3:], y_train)
-    probs = model.predict_proba(X_test[:, 3:])[:, 1]
-
-    indices = np.argsort(probs)[-15:]
-    preds = np.zeros_like(probs, dtype = int)
-    preds[indices] = 1
-
-    players = X_test[preds == 1][:, 0]
-
-    return players
-
 
 @app.get("/players")
 def get_players():
-    return {'players': list(get_top_players())}
+    X_train, y_train, X_test = Preprocessing(list(range(20, 27)))()
+    model = LogisticRegression(class_weight = 'balanced')
+    model.fit(X_train[:, 3:], y_train)
+    return {'players': list(predictions(model = model, X_test = X_test))}
 
 
 @app.get("/stats/")
@@ -50,7 +40,7 @@ def get_stats():
     for player in list(players['players']):
        data.append(list(df.loc[df['Player'] == player, ['PTS', 'TRB', 'AST']].values[0]))
     
-    return {'data': data}
+    return {'stats': data}
 
 
 @app.get("/teams/")
@@ -62,3 +52,13 @@ def get_teams():
        data.append(df.loc[df['Player'] == player, 'Team'].values[0])
     
     return {'teams': data}
+
+@app.get("/id")
+def get_id():
+    player_dict = get_players()
+    data = []
+    for player in list(player_dict['players']):
+        id = players.find_players_by_full_name(player)[0]['id']
+        data.append(id)
+    
+    return {'id': data}
