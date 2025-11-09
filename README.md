@@ -2,7 +2,7 @@
 
 Predicts the 15 NBA players most likely to make the **1st, 2nd, and 3rd All-NBA Teams** based on historical performance and advanced statistics. The project provides a full-stack solution with real-time predictions, player stats, and visualizations.
 
-![Live All-NBA Teams Predictor](image.png)
+![Live All-NBA Teams Predictor](demo.png)
 
 ## Features
 
