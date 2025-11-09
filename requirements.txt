@@ -1,7 +1,13 @@
 beautifulsoup4==4.14.2
+docker==7.1.0
 fastapi==0.121.0
+matplotlib==3.10.7
+matplotlib-inline==0.2.1
+nba_api==1.10.2
 numpy==2.3.4
+optuna==4.5.0
 pandas==2.3.3
+prefect==3.6.0
 requests==2.32.5
 scikit-learn==1.7.2
-uvicorn==0.38.0
+xgboost==3.1.1
