@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt 
+from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
@@ -88,8 +89,6 @@ class Preprocessing:
         y = y.to_numpy()
 
         return X, y
-    
-
 
     def concatenator(self) -> tuple[np.ndarray, np.ndarray]:
 
@@ -102,6 +101,8 @@ class Preprocessing:
         #----------------------------------------------------------
         ''' 
 
+        X_train = None
+        y_train = None
         X_test = None
         is_empty = True
 
@@ -112,7 +113,7 @@ class Preprocessing:
                 X_test = self.create_features_and_labels(26, df)
                 continue
 
-            if is_empty:
+            elif is_empty:
                 X_train, y_train = self.create_features_and_labels(year, df)
                 is_empty = False
 
@@ -121,7 +122,7 @@ class Preprocessing:
 
                 X_train = np.concatenate((X_train, X), axis = 0)
                 y_train = np.concatenate((y_train, y), axis = 0)
-    
+
         return X_train, y_train, X_test
     
 
@@ -131,8 +132,6 @@ class Preprocessing:
 
 
 '''
-
-X_train, y_train, X_test = Preprocessing(list(range(21,27)))()
+X_train, y_train, X_test = Preprocessing(list(range(20,27)))()
 print(X_train.shape, y_train.shape, X_test.shape if X_test is not None else 0)
-
 '''
