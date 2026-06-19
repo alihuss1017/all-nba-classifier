@@ -1,6 +1,10 @@
+import basketball from './assets/header.png'
 export default function Header() {
     return <header>
-            <img src = './src/assets/header.png'/>
-            <h1>All-NBA Teams Predictor</h1>
+                <div className = 'header-top'>
+                    <img src = {basketball}/>
+                    <h1>All-NBA Teams Predictor</h1>
+                </div>
+            <center><h2> Last updated: June 18, 2026</h2></center>
            </header>
 }

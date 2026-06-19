@@ -52,14 +52,12 @@ The system follows a modular, end-to-end workflow:
 4. **Prediction:** Generates probability scores for 1st, 2nd, and 3rd All-NBA team selections.  
 5. **Serving:** Provides a **FastAPI** backend exposing endpoints for predictions, player info, and stats.  
 6. **Frontend Visualization:** **React** app displays team predictions, player probabilities, and detailed stats.  
-7. **Workflow Orchestration:** **Prefect** automates weekly updates, ensuring the latest predictions are always available.
 
 ## Technologies Used
 
 - **Backend:** FastAPI, Python  
 - **Frontend:** React, JavaScript, CSS  
 - **Data Processing & Modeling:** Pandas, NumPy, Scikit-learn, Optuna  
-- **Workflow Orchestration:** Prefect  
 - **Web Scraping:** BeautifulSoup  
 - **Data Sources:** NBA API  
 - **Deployment & Environment:** Python virtual environments, local or cloud-based orchestration

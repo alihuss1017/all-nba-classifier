@@ -5,15 +5,17 @@
 
 header {
     background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    color: white; 
     box-shadow: 5px 5px 10px white;
-
 }
 
-header > img {
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.header-top > img {
     height: 100px;
     width: 100px;
     margin-right: 40px;
@@ -24,29 +26,51 @@ body {
     color: white;
 } 
 
-.playerCard  {
+.display-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 50px;
+}
+
+.team-section {
     display: flex;
-    justify-content: center;
-    margin: 50px;
-    align-items: center;
+    flex-direction: column;
     text-align: center;
 }
 
-.playerCard div {
+.team-title {
+    font-size: 28px;
+}
+
+.display-card {
+    display:flex;
+    flex-direction: column;
+    background-color: black;
+    margin: 10px;
+}
+
+.card-profile {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    padding: 20px;
-    width: 1000px;
+    margin-bottom: 10px;
 }
 
-.playerName {
-    margin-right: 40px;
-    font-size: 40px;
+.headshot {
+    height: 50px;
+    width: 68px;
 }
 
-.playerStat, th, td { 
-    border-collapse: collapse;
-    font-size: 30px;
-    padding: 10px 40px;
+.player-name {
+    width: 150px;
+}
+
+.player-team {
+    text-align: center;
+    width: 50px;
+}
+
+.player-stats {
+    text-align: center;
+    width: 125px;
 }

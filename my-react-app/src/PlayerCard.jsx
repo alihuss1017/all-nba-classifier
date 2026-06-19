@@ -1,60 +1,20 @@
-import { useState, useEffect } from "react"
-import "./App.css"
-import teamColors from "./teamColors"
-
-export default function PlayerCard() {
-
-  const [playerData, setPlayerData] = useState()
-  const [playerTeams, setPlayerTeams] = useState()
-  const [playerStats, setPlayerStats] = useState()
-
-  useEffect(function() {
-    fetch('http://127.0.0.1:8000/players/')
-    .then(res => res.json())
-    .then(data => setPlayerData(data))
-  }, [])
-
-
-  useEffect(function() {
-    fetch('http://127.0.0.1:8000/stats/')
-    .then(res => res.json())
-    .then(data => setPlayerStats(data))
-  }, [])
-
-
-  useEffect(function() {
-    fetch('http://127.0.0.1:8000/teams/')
-    .then(res => res.json())
-    .then(data => setPlayerTeams(data))
-  }, [])
-
-
-
-  const playerNames = playerData?.players.map((player, i) => {
-
-    const cardStyle = {
-                    backgroundColor: teamColors?.[playerTeams?.teams?.[i]]?.background
-                    }
-
-    return <div className = "playerCard">
-      <div style = {cardStyle}>
-      <p className = "playerName">{player}</p>
-        <table className = "playerStat">
-          <thead>
-            <tr>
-              <th>PTS</th>
-              <th>TRB</th>
-              <th>AST</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {playerStats?.data[i].map((stat, j) => <td>{stat}</td>)}
-            </tr>
-          </tbody>
-        </table>
-      </div>
+function PlayerCard(props) {
+    return (
+        <>
+    <div className = 'team-section'>
+        <h1 className = 'team-title'>{props.honor} Team All-NBA </h1>
+        <div className = 'display-card'>
+            {props.data?.predictions?.slice(props.start, props.end).map(player => (
+            <div key = {player?.[1]} className = 'card-profile'>
+                <img className = 'headshot' 
+                src = {`https://cdn.nba.com/headshots/nba/latest/260x190/${player?.[1]}.png`}/>
+                <div className = 'player-name'>{player?.[0]}</div>
+                <div className = 'player-team'> {player?.[2]}</div>
+                <div className = 'player-stats'>{player?.[3][0]} / {player?.[3][1]} / {player?.[3][2]}</div>
+            </div>))}
+        </div>
     </div>
-  })
-  return <>{playerNames}</>
+    </>)
 }
+
+export default PlayerCard

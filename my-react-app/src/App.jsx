@@ -1,10 +1,11 @@
 import Header from "./Header"
-import PlayerCard from "./PlayerCard"
+import TeamCards from "./TeamCards"
 import "./App.css"
 export default function App() {
   return <>
           <Header/>
-          <PlayerCard/>
+          <TeamCards/>
          </>
 
 }
+
